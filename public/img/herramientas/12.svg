@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="16" fill="#0a192f"/>
+  <text x="100" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#64ffda" font-weight="bold">ESMERILADORA DE BANCO</text>
+  <!-- Base -->
+  <rect x="30" y="148" width="140" height="22" rx="6" fill="#37474f"/>
+  <rect x="35" y="145" width="130" height="10" rx="4" fill="#455a64"/>
+  <!-- Motor body -->
+  <rect x="55" y="100" width="90" height="50" rx="8" fill="#37474f"/>
+  <rect x="60" y="104" width="80" height="42" rx="6" fill="#546e7a"/>
+  <!-- Left grinding wheel -->
+  <circle cx="42" cy="120" r="30" fill="#607d8b"/>
+  <circle cx="42" cy="120" r="26" fill="#78909c"/>
+  <circle cx="42" cy="120" r="18" fill="#546e7a"/>
+  <circle cx="42" cy="120" r="8" fill="#37474f"/>
+  <circle cx="42" cy="120" r="4" fill="#90a4ae"/>
+  <!-- Wheel texture lines left -->
+  <line x1="42" y1="94" x2="42" y2="146" stroke="#607d8b" stroke-width="1" opacity="0.5"/>
+  <line x1="16" y1="120" x2="68" y2="120" stroke="#607d8b" stroke-width="1" opacity="0.5"/>
+  <!-- Right grinding wheel -->
+  <circle cx="158" cy="120" r="30" fill="#607d8b"/>
+  <circle cx="158" cy="120" r="26" fill="#78909c"/>
+  <circle cx="158" cy="120" r="18" fill="#546e7a"/>
+  <circle cx="158" cy="120" r="8" fill="#37474f"/>
+  <circle cx="158" cy="120" r="4" fill="#90a4ae"/>
+  <!-- Wheel texture right -->
+  <line x1="158" y1="94" x2="158" y2="146" stroke="#607d8b" stroke-width="1" opacity="0.5"/>
+  <line x1="132" y1="120" x2="184" y2="120" stroke="#607d8b" stroke-width="1" opacity="0.5"/>
+  <!-- Sparks left -->
+  <line x1="25" y1="105" x2="18" y2="98" stroke="#ffcc00" stroke-width="1.5"/>
+  <line x1="20" y1="110" x2="12" y2="106" stroke="#ff9800" stroke-width="1"/>
+  <line x1="22" y1="116" x2="14" y2="115" stroke="#ffcc00" stroke-width="1"/>
+  <!-- ON switch -->
+  <rect x="88" y="118" width="24" height="14" rx="4" fill="#e53935"/>
+  <text x="100" y="128" text-anchor="middle" font-family="Arial" font-size="7" fill="white" font-weight="bold">ON</text>
+  <text x="100" y="192" text-anchor="middle" font-family="Arial" font-size="10" fill="#8892b0">Piedra 6" · 1/2 HP</text>
+</svg>

@@ -1,0 +1,153 @@
+/* ============================================================
+   table.css — Almacén Inteligente (Dark Mode)
+   ============================================================ */
+
+/* TABLAS MODERNAS */
+.table-container {
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+.table th {
+    background-color: #112240;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.table tr:hover td {
+    background-color: rgba(100, 255, 218, 0.03);
+}
+
+/* ============================================================
+   BADGES DE ESTADO (Dark Mode)
+   ============================================================ */
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    display: inline-block;
+}
+.badge.Disponible    { background: rgba(16,185,129,0.15);  color: #10B981; border: 1px solid rgba(16,185,129,0.3); }
+.badge.Prestado      { background: rgba(245,158,11,0.15);  color: #F59E0B; border: 1px solid rgba(245,158,11,0.3); }
+.badge.Mantenimiento { background: rgba(56,189,248,0.15);  color: #38BDF8; border: 1px solid rgba(56,189,248,0.3); }
+.badge.Perdido       { background: rgba(239,68,68,0.15);   color: #EF4444; border: 1px solid rgba(239,68,68,0.3); }
+.badge.Dañado        { background: rgba(239,68,68,0.15);   color: #EF4444; border: 1px solid rgba(239,68,68,0.3); }
+.badge.Activo        { background: rgba(245,158,11,0.15);  color: #F59E0B; border: 1px solid rgba(245,158,11,0.3); }
+.badge.Devuelto      { background: rgba(16,185,129,0.15);  color: #10B981; border: 1px solid rgba(16,185,129,0.3); }
+
+/* Status en mantenimiento */
+.dt-status { padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.72rem; font-weight: 700; }
+.dts-Mantenimiento { background: rgba(56,189,248,0.15); color: #38BDF8; }
+.dts-Dañado        { background: rgba(239,68,68,0.15);  color: #EF4444; }
+
+/* ============================================================
+   BOTONES DE ACCIÓN EN TABLA
+   ============================================================ */
+.action-btn {
+    text-decoration: none;
+    padding: 0.4rem 0.5rem;
+    border-radius: 6px;
+    color: var(--text-muted);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+.action-btn:hover          { background: rgba(100,255,218,0.1); color: var(--primary-color); }
+.action-btn.delete:hover   { background: rgba(239,68,68,0.1);   color: var(--danger); }
+.text-primary              { color: var(--primary-color); }
+
+/* ============================================================
+   LAYOUT GRID DEL DASHBOARD
+   ============================================================ */
+.grid-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.col-4  { flex: 0 0 calc(33.333% - 1rem); min-width: 200px; }
+.col-5  { flex: 0 0 calc(41.666% - 0.75rem); min-width: 260px; }
+.col-7  { flex: 0 0 calc(58.333% - 0.75rem); min-width: 260px; }
+.col-8  { flex: 0 0 calc(66.666% - 0.75rem); min-width: 300px; }
+.col-12 { flex: 0 0 100%; }
+
+/* ============================================================
+   UTILIDADES GENERALES
+   ============================================================ */
+.d-flex   { display: flex;  align-items: center; justify-content: space-between; }
+.mb-4     { margin-bottom: 1.5rem; }
+.mr-1     { margin-right: 0.35rem; }
+.ml-1     { margin-left:  0.35rem; }
+.gap-1    { gap: 0.5rem; }
+
+/* Botón secundario */
+.btn-secondary {
+    background: rgba(100,255,218,0.1);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+.btn-secondary:hover {
+    background: rgba(100,255,218,0.2);
+    transform: translateY(-1px);
+}
+
+/* ============================================================
+   ALERTAS EN DARK MODE
+   ============================================================ */
+.alert {
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.alert-danger {
+    background: rgba(239,68,68,0.1);
+    color: #EF4444;
+    border: 1px solid rgba(239,68,68,0.3);
+}
+.alert-success {
+    background: rgba(16,185,129,0.1);
+    color: #10B981;
+    border: 1px solid rgba(16,185,129,0.3);
+}
+.alert-warning {
+    background: rgba(245,158,11,0.1);
+    color: #F59E0B;
+    border: 1px solid rgba(245,158,11,0.3);
+}
+
+/* Auth page form-control override (light) */
+.auth-card .form-control {
+    background: #112240;
+    color: var(--text-main);
+    border-color: var(--border-color);
+}

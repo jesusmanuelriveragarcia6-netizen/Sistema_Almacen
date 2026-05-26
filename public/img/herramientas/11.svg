@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="16" fill="#0a192f"/>
+  <text x="100" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#64ffda" font-weight="bold">CAUTÍN WELLER 40W</text>
+  <!-- Handle -->
+  <rect x="110" y="80" width="60" height="25" rx="12" fill="#37474f"/>
+  <rect x="115" y="84" width="50" height="17" rx="8" fill="#455a64"/>
+  <!-- Power cord bump -->
+  <circle cx="162" cy="92" r="5" fill="#263238"/>
+  <!-- Barrel/heating element -->
+  <rect x="52" y="87" width="62" height="12" rx="4" fill="#78909c"/>
+  <rect x="55" y="89" width="56" height="8" rx="3" fill="#90a4ae"/>
+  <!-- Heating bands -->
+  <rect x="70" y="87" width="4" height="12" fill="#607d8b"/>
+  <rect x="82" y="87" width="4" height="12" fill="#607d8b"/>
+  <rect x="94" y="87" width="4" height="12" fill="#607d8b"/>
+  <!-- Hot tip -->
+  <polygon points="30,93 52,88 52,99" fill="#b0bec5"/>
+  <polygon points="20,93 32,91 32,95" fill="#cfd8dc"/>
+  <!-- Heat glow -->
+  <ellipse cx="22" cy="93" rx="8" ry="4" fill="rgba(255,152,0,0.3)"/>
+  <ellipse cx="22" cy="93" rx="4" ry="2" fill="rgba(255,152,0,0.5)"/>
+  <!-- Heat waves -->
+  <path d="M15 80 Q18 75 21 80 Q24 85 27 80" stroke="#ff9800" stroke-width="1.5" fill="none" opacity="0.7"/>
+  <path d="M10 76 Q14 70 18 76 Q22 82 26 76" stroke="#ff9800" stroke-width="1" fill="none" opacity="0.4"/>
+  <!-- Weller logo -->
+  <text x="135" y="95" text-anchor="middle" font-family="Arial" font-size="8" fill="#64ffda" font-weight="bold">WELLER</text>
+  <!-- Stand shadow -->
+  <ellipse cx="100" cy="145" rx="50" ry="6" fill="rgba(100,255,218,0.05)"/>
+  <text x="100" y="178" text-anchor="middle" font-family="Arial" font-size="10" fill="#8892b0">40W · Soldadura Electrónica</text>
+</svg>

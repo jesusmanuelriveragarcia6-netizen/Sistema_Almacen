@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="16" fill="#0a192f"/>
+  <text x="100" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#64ffda" font-weight="bold">MULTÍMETRO FLUKE 101</text>
+  <!-- Device body -->
+  <rect x="55" y="30" width="90" height="130" rx="10" fill="#f9a825"/>
+  <rect x="60" y="35" width="80" height="120" rx="8" fill="#f57f17"/>
+  <!-- Screen -->
+  <rect x="65" y="42" width="70" height="38" rx="5" fill="#1a237e"/>
+  <rect x="68" y="45" width="64" height="32" rx="3" fill="#283593"/>
+  <!-- Display digits -->
+  <text x="100" y="66" text-anchor="middle" font-family="monospace" font-size="20" fill="#00e676" font-weight="bold">1.998</text>
+  <text x="127" y="73" text-anchor="middle" font-family="Arial" font-size="7" fill="#69f0ae">Ω</text>
+  <!-- Rotary dial -->
+  <circle cx="100" cy="112" r="22" fill="#e65100"/>
+  <circle cx="100" cy="112" r="18" fill="#bf360c"/>
+  <circle cx="100" cy="112" r="8" fill="#37474f"/>
+  <!-- Dial markings -->
+  <text x="100" y="94" text-anchor="middle" font-size="7" fill="#ffcc02">V</text>
+  <text x="118" y="116" text-anchor="middle" font-size="7" fill="#ffcc02">Ω</text>
+  <text x="100" y="132" text-anchor="middle" font-size="7" fill="#ffcc02">A</text>
+  <text x="82" y="116" text-anchor="middle" font-size="7" fill="#ffcc02">Hz</text>
+  <!-- Probe ports -->
+  <circle cx="82" cy="148" r="5" fill="#212121"/>
+  <circle cx="100" cy="148" r="5" fill="#212121"/>
+  <circle cx="118" cy="148" r="5" fill="#212121"/>
+  <!-- Probe tips dots -->
+  <circle cx="82" cy="148" r="2" fill="#f44336"/>
+  <circle cx="100" cy="148" r="2" fill="#4caf50"/>
+  <circle cx="118" cy="148" r="2" fill="#2196f3"/>
+  <text x="100" y="192" text-anchor="middle" font-family="Arial" font-size="10" fill="#8892b0">Medidor Digital de Bolsillo</text>
+</svg>

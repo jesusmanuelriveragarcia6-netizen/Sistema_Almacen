@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="16" fill="#0a192f"/>
+  <text x="100" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#64ffda" font-weight="bold">PINZA PELACABLES IRWIN</text>
+  <!-- Left handle -->
+  <path d="M60 170 Q55 140 70 110 L80 110 Q65 140 70 170 Z" fill="#e53935"/>
+  <!-- Right handle -->
+  <path d="M140 170 Q145 140 130 110 L120 110 Q135 140 130 170 Z" fill="#e53935"/>
+  <!-- Left jaw body -->
+  <path d="M70 110 L80 110 L95 65 L85 60 Z" fill="#78909c"/>
+  <!-- Right jaw body -->
+  <path d="M130 110 L120 110 L105 65 L115 60 Z" fill="#78909c"/>
+  <!-- Pivot screw -->
+  <circle cx="100" cy="105" r="8" fill="#546e7a"/>
+  <circle cx="100" cy="105" r="4" fill="#37474f"/>
+  <!-- Wire cutting notches -->
+  <ellipse cx="93" cy="78" rx="6" ry="4" fill="#37474f"/>
+  <ellipse cx="107" cy="78" rx="6" ry="4" fill="#37474f"/>
+  <!-- Jaw tips -->
+  <path d="M85 60 L95 65 L100 50 L100 50 L105 65 L115 60 L100 38 Z" fill="#90a4ae"/>
+  <text x="100" y="192" text-anchor="middle" font-family="Arial" font-size="10" fill="#8892b0">Automática · 8 pulgadas</text>
+</svg>

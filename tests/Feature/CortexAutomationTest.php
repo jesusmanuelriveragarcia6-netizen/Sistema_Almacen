@@ -1,0 +1,68 @@
+<?php
+
+namespace Tests\Feature;
+
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Tests\TestCase;
+use App\Models\Usuario;
+use App\Services\CortexAutomationService;
+
+class CortexAutomationTest extends TestCase
+{
+    use DatabaseTransactions;
+
+    /**
+     * Test the real optimize_db functionality.
+     */
+    public function test_optimize_db_executes_successfully()
+    {
+        $admin = Usuario::factory()->create(['rol' => 'Administrador']);
+
+        $service = new CortexAutomationService();
+        $message = $service->executeAuthorizedRepair('optimize_db');
+
+        $this->assertStringContainsString('Optimización de base de datos finalizada', $message);
+        $this->assertStringContainsString('Tablas desfragmentadas', $message);
+    }
+
+    /**
+     * Test the real fix_permissions functionality.
+     */
+    public function test_fix_permissions_executes_successfully()
+    {
+        $admin = Usuario::factory()->create(['rol' => 'Administrador']);
+
+        $service = new CortexAutomationService();
+        $message = $service->executeAuthorizedRepair('fix_permissions');
+
+        $this->assertStringContainsString('Permisos de sistema restaurados en directorios críticos', $message);
+        $this->assertStringContainsString('procesados', $message);
+    }
+
+    /**
+     * Test execution of repair endpoint by admin.
+     */
+    public function test_admin_can_trigger_repair_endpoints()
+    {
+        $admin = Usuario::factory()->create(['rol' => 'Administrador']);
+
+        $response = $this->actingAs($admin)->post('/cortex/repair/optimize_db');
+
+        $response->assertStatus(200);
+        $response->assertJson([
+            'success' => true
+        ]);
+    }
+
+    /**
+     * Test non-admin cannot trigger repair endpoints.
+     */
+    public function test_non_admin_cannot_trigger_repair_endpoints()
+    {
+        $user = Usuario::factory()->create(['rol' => 'Almacenero']);
+
+        $response = $this->actingAs($user)->post('/cortex/repair/optimize_db');
+
+        $response->assertStatus(403);
+    }
+}

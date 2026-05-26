@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="16" fill="#0a192f"/>
+  <text x="100" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#64ffda" font-weight="bold">COMPRESOR EINHELL</text>
+  <!-- Tank -->
+  <ellipse cx="100" cy="140" rx="65" ry="32" fill="#37474f"/>
+  <rect x="35" y="108" width="130" height="32" fill="#455a64"/>
+  <ellipse cx="100" cy="108" rx="65" ry="22" fill="#546e7a"/>
+  <!-- Tank highlight -->
+  <ellipse cx="100" cy="105" rx="55" ry="10" fill="rgba(255,255,255,0.05)"/>
+  <!-- Motor on top -->
+  <rect x="60" y="65" width="80" height="48" rx="8" fill="#37474f"/>
+  <rect x="65" y="68" width="70" height="42" rx="6" fill="#455a64"/>
+  <!-- Motor cooling fins -->
+  <rect x="68" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="76" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="84" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="92" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="100" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="108" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="116" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <rect x="124" y="70" width="4" height="38" rx="1" fill="#37474f"/>
+  <!-- Pressure gauge -->
+  <circle cx="155" cy="90" r="18" fill="#263238"/>
+  <circle cx="155" cy="90" r="15" fill="#37474f"/>
+  <circle cx="155" cy="90" r="12" fill="#1a237e"/>
+  <text x="155" y="86" text-anchor="middle" font-family="Arial" font-size="7" fill="#64ffda">PSI</text>
+  <text x="155" y="96" text-anchor="middle" font-family="monospace" font-size="9" fill="#00e676" font-weight="bold">120</text>
+  <!-- Air hose connector -->
+  <rect x="28" y="124" width="14" height="8" rx="3" fill="#78909c"/>
+  <circle cx="28" cy="128" r="4" fill="#607d8b"/>
+  <!-- Legs -->
+  <rect x="45" y="168" width="14" height="20" rx="3" fill="#37474f"/>
+  <rect x="141" y="168" width="14" height="20" rx="3" fill="#37474f"/>
+  <rect x="45" y="185" width="110" height="6" rx="3" fill="#263238"/>
+  <!-- Power switch -->
+  <circle cx="155" cy="118" r="6" fill="#e53935"/>
+  <text x="100" y="200" text-anchor="middle" font-family="Arial" font-size="9" fill="#8892b0">50L · 2.5 HP</text>
+</svg>

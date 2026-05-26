@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <rect width="200" height="200" rx="16" fill="#0a192f"/>
+  <text x="100" y="22" text-anchor="middle" font-family="Arial" font-size="10" fill="#64ffda" font-weight="bold">DESTORNILLADOR TRUPER</text>
+  <!-- Handle -->
+  <rect x="82" y="30" width="36" height="80" rx="18" fill="#e53935"/>
+  <rect x="88" y="34" width="24" height="72" rx="14" fill="#ef5350"/>
+  <!-- Neck -->
+  <rect x="94" y="108" width="12" height="20" rx="3" fill="#78909c"/>
+  <!-- Blade -->
+  <rect x="98" y="128" width="4" height="48" rx="1" fill="#b0bec5"/>
+  <!-- Tip -->
+  <polygon points="98,176 102,176 101,185 99,185" fill="#90a4ae"/>
+  <!-- Grip lines -->
+  <line x1="84" y1="55" x2="116" y2="55" stroke="#c62828" stroke-width="2" opacity="0.5"/>
+  <line x1="84" y1="68" x2="116" y2="68" stroke="#c62828" stroke-width="2" opacity="0.5"/>
+  <line x1="84" y1="81" x2="116" y2="81" stroke="#c62828" stroke-width="2" opacity="0.5"/>
+  <!-- Stars for magnetic tips -->
+  <text x="30" y="150" font-size="18" fill="#ffcc00">✦</text>
+  <text x="148" y="150" font-size="14" fill="#ffcc00">✦</text>
+  <text x="100" y="185" text-anchor="middle" font-family="Arial" font-size="10" fill="#8892b0">Puntas Magnéticas Intercambiables</text>
+</svg>
