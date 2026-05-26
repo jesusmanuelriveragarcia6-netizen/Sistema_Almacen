@@ -11,6 +11,11 @@
             <div>
                 <h2 class="text-white font-weight-bold mb-1">Neural Operations Center</h2>
                 <p class="text-muted m-0">Supervisión centralizada y autonomía de nivel 3 activa.</p>
+                <div class="mt-2">
+                    <span class="badge" style="background: rgba(100,255,218,0.1); color: #64FFDA; border: 1px solid #64FFDA; font-size: 0.8rem; padding: 0.4em 0.8em;">
+                        <i class="fa-solid fa-check-double mr-1"></i> ESTADO GENERAL: ÓPTIMO
+                    </span>
+                </div>
             </div>
             <div class="d-flex gap-4">
                 <div class="text-center px-4 border-right border-dark">
