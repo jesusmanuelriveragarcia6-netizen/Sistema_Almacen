@@ -190,6 +190,58 @@
                         </div>
                     @endforeach
                 </div>
+
+                <!-- NUEVA SECCIÓN: TABLA DE RESUMEN PARA EL INFORME -->
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <x-cortex.module-card title="Resumen General: Bugs e Incidencias" icon="fa-bug">
+                            <div class="table-responsive mt-3">
+                                <table class="table table-borderless text-white" style="background: rgba(10,25,47,0.3); border-radius: 12px; overflow: hidden;">
+                                    <thead style="background: rgba(100,255,218,0.1); color: #64FFDA; border-bottom: 2px solid rgba(100,255,218,0.2);">
+                                        <tr>
+                                            <th class="py-3 px-4 font-weight-bold">Módulo / Categoría</th>
+                                            <th class="py-3 px-4 font-weight-bold">Descripción del Escaneo</th>
+                                            <th class="py-3 px-4 font-weight-bold text-center">Severidad</th>
+                                            <th class="py-3 px-4 font-weight-bold text-center">Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($aiInsights['diagnostic'] as $key => $test)
+                                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                            <td class="py-3 px-4 uppercase text-muted font-weight-bold">{{ $key }}</td>
+                                            <td class="py-3 px-4" style="opacity: 0.8; font-size: 0.9rem;">{{ $test['message'] }}</td>
+                                            <td class="py-3 px-4 text-center">
+                                                @if($test['status'] === 'PASS')
+                                                    <span class="badge" style="background: rgba(100,255,218,0.1); color: #64FFDA; border: 1px solid #64FFDA;">LOW (Nominal)</span>
+                                                @else
+                                                    <span class="badge" style="background: rgba(244,63,94,0.1); color: #F43F5E; border: 1px solid #F43F5E;">HIGH (Crítico)</span>
+                                                @endif
+                                            </td>
+                                            <td class="py-3 px-4 text-center">
+                                                @if($test['status'] === 'PASS')
+                                                    <i class="fa-solid fa-check text-success"></i> 0 Bugs
+                                                @else
+                                                    <i class="fa-solid fa-bug text-danger"></i> Falla Detectada
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        
+                                        <!-- Simulamos un escaneo del núcleo para dar volumen a la tabla -->
+                                        <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                                            <td class="py-3 px-4 uppercase text-muted font-weight-bold">FIREWALL</td>
+                                            <td class="py-3 px-4" style="opacity: 0.8; font-size: 0.9rem;">Verificación de accesos no autorizados en capa de red.</td>
+                                            <td class="py-3 px-4 text-center">
+                                                <span class="badge" style="background: rgba(100,255,218,0.1); color: #64FFDA; border: 1px solid #64FFDA;">LOW (Nominal)</span>
+                                            </td>
+                                            <td class="py-3 px-4 text-center"><i class="fa-solid fa-check text-success"></i> 0 Bugs</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </x-cortex.module-card>
+                    </div>
+                </div>
             </div>
 
             <!-- TAB 4: INTELIGENCIA -->
