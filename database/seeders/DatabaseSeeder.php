@@ -2,24 +2,29 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Usuario;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
+     * 
+     * Crea un usuario Administrador por defecto para que
+     * cualquier persona que clone el repo pueda iniciar sesión.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Crear el usuario administrador por defecto (solo si no existe)
+        if (!Usuario::where('usuario', 'admin')->exists()) {
+            Usuario::create([
+                'nombre' => 'Administrador',
+                'usuario' => 'admin',
+                'password' => Hash::make('Admin123!'),
+                'rol' => 'Administrador',
+                'creado_en' => now(),
+            ]);
+        }
     }
 }

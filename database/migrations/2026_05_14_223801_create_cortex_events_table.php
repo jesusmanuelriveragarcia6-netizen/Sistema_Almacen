@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cortex_events', function (Blueprint $table) {
-            $table->id();
-            $table->string('type'); // INFO, SECURITY, SYSTEM, DIAGNOSTIC
-            $table->string('severity')->default('INFO'); // LOW, MEDIUM, HIGH, CRITICAL
-            $table->text('message');
-            $table->json('metadata')->nullable(); // Para guardar detalles técnicos
-            $table->foreignId('user_id')->nullable()->constrained('usuarios'); // Quién autorizó o causó el evento
-            $table->boolean('is_authorized')->default(false); // Para reparaciones que requieren aval
-            $table->timestamp('created_at')->useCurrent();
-        });
+        if (!Schema::hasTable('cortex_events')) {
+            Schema::create('cortex_events', function (Blueprint $table) {
+                $table->id();
+                $table->string('type'); // INFO, SECURITY, SYSTEM, DIAGNOSTIC
+                $table->string('severity')->default('INFO'); // LOW, MEDIUM, HIGH, CRITICAL
+                $table->text('message');
+                $table->json('metadata')->nullable(); // Para guardar detalles técnicos
+                $table->foreignId('user_id')->nullable()->constrained('usuarios'); // Quién autorizó o causó el evento
+                $table->boolean('is_authorized')->default(false); // Para reparaciones que requieren aval
+                $table->timestamp('created_at')->useCurrent();
+            });
+        }
     }
 
     public function down(): void
