@@ -75,7 +75,7 @@ Y accede a `http://localhost:8000`
 
 | Usuario | Contraseña | Rol |
 |---------|-----------|-----|
-| `admin` | `Admin123!` | Administrador |
+| `admin` | `Adm!n#2026$SecureX9` | Administrador |
 
 > ⚠️ **Cambia la contraseña del administrador** después del primer inicio de sesión.
 
@@ -91,7 +91,7 @@ Asegúrate de haber ejecutado `php artisan migrate` correctamente.
 
 ### No me deja iniciar sesión
 1. Verifica que ejecutaste `php artisan db:seed` para crear el usuario admin
-2. Las credenciales son: usuario `admin`, contraseña `Admin123!`
+2. Las credenciales son: usuario `admin`, contraseña `Adm!n#2026$SecureX9`
 3. Si cambiaste la `APP_KEY` después de crear usuarios, las contraseñas anteriores no funcionarán
 
 ### Error de permisos en storage/
