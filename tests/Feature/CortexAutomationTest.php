@@ -65,4 +65,23 @@ class CortexAutomationTest extends TestCase
 
         $response->assertStatus(403);
     }
+
+    /**
+     * Test that running scan logs the diagnostic event in db and redirects.
+     */
+    public function test_run_scan_logs_diagnostic_event_and_redirects()
+    {
+        $user = Usuario::factory()->create();
+        
+        $response = $this->actingAs($user)->get('/cortex/scan');
+        
+        $response->assertRedirect(route('cortex.index'));
+        $response->assertSessionHas('scan_completed', true);
+        
+        // Assert that a log was recorded in cortex_events
+        $this->assertDatabaseHas('cortex_events', [
+            'type' => 'DIAGNOSTIC',
+            'user_id' => $user->id,
+        ]);
+    }
 }

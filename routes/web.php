@@ -21,6 +21,8 @@ Route::middleware(['auth'])->group(function () {
     // Cortex Assistant (Centro de Monitoreo IA)
     Route::get('/cortex', [\App\Http\Controllers\CortexController::class, 'index'])->name('cortex.index');
     Route::get('/cortex/scan', [\App\Http\Controllers\CortexController::class, 'runFullScan'])->name('cortex.scan');
+    Route::get('/cortex/export-audit', [\App\Http\Controllers\CortexController::class, 'exportAuditReport'])->name('cortex.export_audit');
+    Route::get('/cortex/export-technical', [\App\Http\Controllers\CortexController::class, 'exportTechnicalReport'])->name('cortex.export_technical');
     Route::post('/cortex/repair/{component}', [\App\Http\Controllers\CortexController::class, 'repair'])->name('cortex.repair');
     Route::post('/cortex/incident/dismiss', [\App\Http\Controllers\CortexController::class, 'dismissIncident'])->name('cortex.dismiss');
     Route::post('/cortex/incident/restore', [\App\Http\Controllers\CortexController::class, 'restoreIncidents'])->name('cortex.restore');

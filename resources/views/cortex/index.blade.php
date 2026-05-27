@@ -3,6 +3,9 @@
 @section('title', 'Cortex NOC - Neural Operations Center')
 
 @section('content')
+<!-- Cargar Chart.js para los gráficos dinámicos del sistema -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <div class="cortex-neural-container">
     <x-cortex.assistant-shell :security-status="$aiInsights['security']['status']">
         
@@ -118,10 +121,19 @@
                         <div class="mt-4">
                             <x-cortex.module-card title="Consola de Análisis" icon="fa-radar">
                                 <p class="text-muted small mb-4">Inicia un diagnóstico completo para recalibrar los sensores neurales del almacén.</p>
-                                <button class="btn-cortex-neural w-100" style="padding: 1rem !important; border-radius: 12px !important;" onclick="runAIScan()">
+                                <button class="btn-cortex-neural w-100 mb-3" style="padding: 1rem !important; border-radius: 12px !important;" onclick="runAIScan()">
                                     <i class="fa-solid fa-atom fa-spin mr-3"></i> RE-INICIAR ESCANEO
                                 </button>
+                                <a href="{{ route('cortex.export_audit') }}" class="btn w-100 d-flex justify-content-center align-items-center" 
+                                   style="padding: 1rem; border-radius: 12px; font-weight: bold; border: 1px solid rgba(244, 63, 94, 0.5); background: linear-gradient(45deg, rgba(244, 63, 94, 0.05), rgba(244, 63, 94, 0.15)); color: #F43F5E; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(244, 63, 94, 0.1);" 
+                                   onmouseover="this.style.background='linear-gradient(45deg, rgba(244, 63, 94, 0.1), rgba(244, 63, 94, 0.25))'; this.style.boxShadow='0 6px 20px rgba(244, 63, 94, 0.3)'; this.style.transform='translateY(-2px)';" 
+                                   onmouseout="this.style.background='linear-gradient(45deg, rgba(244, 63, 94, 0.05), rgba(244, 63, 94, 0.15))'; this.style.boxShadow='0 4px 15px rgba(244, 63, 94, 0.1)'; this.style.transform='translateY(0)';">
+                                    <i class="fa-solid fa-file-pdf mr-3" style="font-size: 1.2rem;"></i> 
+                                    <span>Exportar Informe PDF</span>
+                                </a>
+
                             </x-cortex.module-card>
+
                         </div>
                     </div>
                 </div>
@@ -194,6 +206,92 @@
                             </div>
                         </div>
                     @endforeach
+                </div>
+
+                <!-- GRÁFICOS DE RESUMEN DE BUGS -->
+                <div class="row mt-5">
+                    <div class="col-md-6 mb-4">
+                        <div class="glass-container p-4 h-100" style="background: rgba(10, 25, 47, 0.4); border: 1px solid rgba(100, 255, 218, 0.1); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
+                            <h4 class="text-white font-weight-bold mb-4" style="font-size: 1.1rem; letter-spacing: 0.5px;">
+                                <i class="fa-solid fa-chart-pie mr-2 text-primary"></i> Bugs por Categoría
+                            </h4>
+                            <div class="row align-items-center">
+                                <div class="col-sm-6 text-center">
+                                    <div style="position: relative; width: 140px; height: 140px; margin: 0 auto;">
+                                        <canvas id="chartBugsByCategory"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mt-3 mt-sm-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-borderless text-white mb-0" style="font-size: 0.8rem; background: transparent;">
+                                            <tbody>
+                                                @foreach($aiInsights['bugsByCategory'] as $cat => $count)
+                                                    @php
+                                                        $colors = [
+                                                            'Seguridad' => '#F43F5E',
+                                                            'Rendimiento' => '#3B82F6',
+                                                            'Base de Datos' => '#10B981',
+                                                            'Integridad de Modelos' => '#F59E0B',
+                                                            'Permisos' => '#8B5CF6'
+                                                        ];
+                                                        $color = $colors[$cat] ?? '#8892B0';
+                                                    @endphp
+                                                    <tr onclick="showBugsModal('categoria', '{{ $cat }}')" style="border-bottom: 1px solid rgba(255,255,255,0.03); cursor: pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(100, 255, 218, 0.05)';" onmouseout="this.style.backgroundColor='transparent';">
+                                                        <td class="d-flex align-items-center py-1 px-0">
+                                                            <span class="d-inline-block rounded-circle mr-2" style="width: 8px; height: 8px; background-color: {{ $color }}; box-shadow: 0 0 5px {{ $color }};"></span>
+                                                            <span style="opacity: 0.85;">{{ $cat }}</span>
+                                                        </td>
+                                                        <td class="text-right py-1 px-0 font-weight-bold" style="color: {{ $color }}">{{ $count }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                        <div class="glass-container p-4 h-100" style="background: rgba(10, 25, 47, 0.4); border: 1px solid rgba(100, 255, 218, 0.1); border-radius: 12px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);">
+                            <h4 class="text-white font-weight-bold mb-4" style="font-size: 1.1rem; letter-spacing: 0.5px;">
+                                <i class="fa-solid fa-triangle-exclamation mr-2 text-danger"></i> Distribución de Severidad
+                            </h4>
+                            <div class="row align-items-center">
+                                <div class="col-sm-6 text-center">
+                                    <div style="position: relative; width: 140px; height: 140px; margin: 0 auto;">
+                                        <canvas id="chartBugsBySeverity"></canvas>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 mt-3 mt-sm-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-sm table-borderless text-white mb-0" style="font-size: 0.8rem; background: transparent;">
+                                            <tbody>
+                                                @foreach($aiInsights['bugsBySeverity'] as $sev => $count)
+                                                    @php
+                                                        $colors = [
+                                                            'Crítico' => '#EF4444',
+                                                            'Alto' => '#F97316',
+                                                            'Medio' => '#EAB308',
+                                                            'Bajo' => '#10B981'
+                                                        ];
+                                                        $color = $colors[$sev] ?? '#8892B0';
+                                                    @endphp
+                                                    <tr onclick="showBugsModal('severidad', '{{ $sev }}')" style="border-bottom: 1px solid rgba(255,255,255,0.03); cursor: pointer; transition: background-color 0.2s;" onmouseover="this.style.backgroundColor='rgba(244, 63, 94, 0.05)';" onmouseout="this.style.backgroundColor='transparent';">
+                                                        <td class="d-flex align-items-center py-1 px-0">
+                                                            <span class="d-inline-block rounded-circle mr-2" style="width: 8px; height: 8px; background-color: {{ $color }}; box-shadow: 0 0 5px {{ $color }};"></span>
+                                                            <span style="opacity: 0.85;">{{ $sev }}</span>
+                                                        </td>
+                                                        <td class="text-right py-1 px-0 font-weight-bold" style="color: {{ $color }}">{{ $count }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- NUEVA SECCIÓN: TABLA DE RESUMEN PARA EL INFORME -->
@@ -552,11 +650,226 @@ function runAIScan() {
     Swal.fire({
         icon: "{{ session('scan_errors') ? 'warning' : 'success' }}",
         title: "{{ session('scan_errors') ? 'Diagnóstico Finalizado' : 'Sistema Nominal' }}",
-        text: "{{ session('scan_errors') ? 'Se detectaron anomalías que requieren atención inmediata.' : 'Todos los módulos operan en parámetros óptimos.' }}",
+        text: "{{ session('scan_errors') ? 'Se detectaron anomalías que requieren atención inmediata. El reporte de auditoría ha sido generado e iniciado su descarga automáticamente.' : 'Todos los módulos operan en parámetros óptimos. El reporte de auditoría ha sido generado e iniciado su descarga automáticamente.' }}",
         background: '#0A192F',
         color: '#E6F1FF',
         confirmButtonColor: '#64FFDA'
     });
+
+    // Descarga automática del reporte PDF
+    setTimeout(() => {
+        const downloadLink = document.createElement('a');
+        downloadLink.href = "{{ route('cortex.export_audit') }}";
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+    }, 500);
 @endif
+
+// Inicialización de Gráficos de Auditoría de Cortex
+document.addEventListener('DOMContentLoaded', function() {
+    initializeCortexCharts();
+});
+
+function showBugsModal(filterType, filterValue) {
+    const bugsList = @json($aiInsights['bugsList'] ?? []);
+    
+    // Filtrar lista
+    const filteredBugs = bugsList.filter(bug => {
+        if (filterType === 'categoria') {
+            return bug.categoria.toLowerCase() === filterValue.toLowerCase();
+        } else if (filterType === 'severidad') {
+            return bug.severidad.toLowerCase() === filterValue.toLowerCase();
+        }
+        return false;
+    });
+
+    if (filteredBugs.length === 0) {
+        Swal.fire({
+            title: 'SIN INCIDENCIAS',
+            text: 'No se encontraron errores registrados para esta selección.',
+            icon: 'info',
+            background: '#0A192F',
+            color: '#E6F1FF',
+            confirmButtonColor: '#64FFDA'
+        });
+        return;
+    }
+
+    // Construir estructura HTML personalizada con estilos Cyberpunk
+    let htmlContent = `
+        <div class="text-left" style="font-family: 'JetBrains Mono', monospace; max-height: 400px; overflow-y: auto; padding-right: 5px;">
+            <p class="text-muted small mb-3">> Leyendo bitácora de anomalías filtrada por ${filterType}: "${filterValue}"</p>
+    `;
+
+    filteredBugs.forEach((bug, index) => {
+        const severityColors = {
+            'Crítico': '#EF4444',
+            'Alto': '#F97316',
+            'Medio': '#EAB308',
+            'Bajo': '#10B981'
+        };
+        const color = severityColors[bug.severidad] ?? '#8892B0';
+        
+        htmlContent += `
+            <div class="p-3 mb-3 rounded" style="background: rgba(255,255,255,0.02); border-left: 4px solid ${color}; border-top: 1px solid rgba(255,255,255,0.03); border-right: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); text-align: left;">
+                <div class="d-flex justify-content-between align-items-center mb-2" style="display: flex !important; justify-content: space-between !important; align-items: center !important;">
+                    <span class="badge" style="background: rgba(${hexToRgb(color)}, 0.1); color: ${color}; border: 1px solid ${color}; font-size: 0.7rem; padding: 0.25em 0.6em; border-radius: 4px;">
+                        ${bug.severidad.toUpperCase()}
+                    </span>
+                    <span class="text-muted" style="font-size: 0.7rem;">${bug.fecha}</span>
+                </div>
+                <div class="text-white mb-2" style="font-size: 0.85rem; line-height: 1.4; font-weight: normal; font-family: sans-serif;">
+                    ${bug.descripcion}
+                </div>
+                <div class="text-muted" style="font-size: 0.7rem;">
+                    Categoría: <span style="color: #64FFDA;">${bug.categoria}</span>
+                </div>
+            </div>
+        `;
+    });
+
+    htmlContent += `</div>`;
+
+    Swal.fire({
+        title: `<span style="font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: bold; letter-spacing: 1px; color: #64FFDA;">INSPECTOR DE INCIDENCIAS</span><br><span style="font-size: 0.75rem; color: #8892B0; font-family: 'JetBrains Mono', monospace;">FILTRO: ${filterValue.toUpperCase()}</span>`,
+        html: htmlContent,
+        width: '600px',
+        background: '#0A192F',
+        color: '#E6F1FF',
+        confirmButtonColor: '#64FFDA',
+        confirmButtonText: 'CERRAR PANEL',
+        customClass: {
+            popup: 'cyber-swal-popup'
+        }
+    });
+}
+
+function hexToRgb(hex) {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? 
+        parseInt(result[1], 16) + ',' + parseInt(result[2], 16) + ',' + parseInt(result[3], 16)
+        : '100, 255, 218';
+}
+
+function initializeCortexCharts() {
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js no está cargado');
+        return;
+    }
+
+    const categoryCanvas = document.getElementById('chartBugsByCategory');
+    const severityCanvas = document.getElementById('chartBugsBySeverity');
+
+    if (categoryCanvas) {
+        const ctxCategory = categoryCanvas.getContext('2d');
+        const bugsByCategoryData = @json($aiInsights['bugsByCategory'] ?? []);
+        const labelsCategory = Object.keys(bugsByCategoryData);
+        const valuesCategory = Object.values(bugsByCategoryData);
+        
+        const colorsCategory = labelsCategory.map(label => {
+            if (label === 'Seguridad') return '#F43F5E';
+            if (label === 'Rendimiento') return '#3B82F6';
+            if (label === 'Base de Datos') return '#10B981';
+            if (label === 'Integridad de Modelos') return '#F59E0B';
+            return '#8B5CF6';
+        });
+
+        new Chart(ctxCategory, {
+            type: 'doughnut',
+            data: {
+                labels: labelsCategory,
+                datasets: [{
+                    data: valuesCategory,
+                    backgroundColor: colorsCategory,
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                onClick: (event, activeElements) => {
+                    if (activeElements && activeElements.length > 0) {
+                        const activeElement = activeElements[0];
+                        const index = activeElement.index;
+                        const label = labelsCategory[index];
+                        showBugsModal('categoria', label);
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#0A192F',
+                        titleColor: '#E6F1FF',
+                        bodyColor: '#E6F1FF',
+                        borderColor: 'rgba(100, 255, 218, 0.2)',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        displayColors: true
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    }
+
+    if (severityCanvas) {
+        const ctxSeverity = severityCanvas.getContext('2d');
+        const bugsBySeverityData = @json($aiInsights['bugsBySeverity'] ?? []);
+        const labelsSeverity = Object.keys(bugsBySeverityData);
+        const valuesSeverity = Object.values(bugsBySeverityData);
+
+        const colorsSeverity = labelsSeverity.map(label => {
+            if (label === 'Crítico') return '#EF4444';
+            if (label === 'Alto') return '#F97316';
+            if (label === 'Medio') return '#EAB308';
+            return '#10B981';
+        });
+
+        new Chart(ctxSeverity, {
+            type: 'doughnut',
+            data: {
+                labels: labelsSeverity,
+                datasets: [{
+                    data: valuesSeverity,
+                    backgroundColor: colorsSeverity,
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                onClick: (event, activeElements) => {
+                    if (activeElements && activeElements.length > 0) {
+                        const activeElement = activeElements[0];
+                        const index = activeElement.index;
+                        const label = labelsSeverity[index];
+                        showBugsModal('severidad', label);
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#0A192F',
+                        titleColor: '#E6F1FF',
+                        bodyColor: '#E6F1FF',
+                        borderColor: 'rgba(100, 255, 218, 0.2)',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        displayColors: true
+                    }
+                },
+                cutout: '70%'
+            }
+        });
+    }
+}
 </script>
 @endsection
